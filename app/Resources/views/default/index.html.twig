@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<body>
+
+
+
+       
+   {% if todos == "yos" %}
+    <p>Our website is in maintenance mode. Please, come back later.</p>
+{% endif %}
+   <table class="table table-bordered table-dark">
+        <thead>
+        <th></th>
+        <th scope="col">Adding user</th>
+        <th scope="col">Delete user</th>
+        <th scope="col">Assgining roles</th>
+        <th></th>
+        </thead>
+        <tbody>
+       {% for user in arr %}
+     
+    
+            <tr>
+            
+                <form action="" method="post">
+
+                   <td> <label for="{{ user.title}}">{{ user.title}}</label> </td>
+{% set t = "no" %}
+{% for b in user.title1 %}
+  {% if b.role == "ROLE_USER" %}
+{% set t = "yes" %}
+  {% endif %}
+
+
+   {% endfor %}
+
+                    <td><input type="checkbox" 
+                      {% if t == "yes" %}
+   checked
+{% endif %}
+ name="role_user"></td>
+
+
+{% set t = "no" %}
+{% for b in user.title1 %}
+  {% if b.role == "ROLE_MAGIC" %}
+{% set t = "yes" %}
+  {% endif %}
+
+
+   {% endfor %}
+
+                    <td><input type="checkbox" 
+                      {% if t == "yes" %}
+   checked
+{% endif %}
+ name="role_magic"></td>
+
+
+
+{% set t = "no" %}
+{% for b in user.title1 %}
+  {% if b.role == "ROLE_ADMIN" %}
+{% set t = "yes" %}
+  {% endif %}
+
+
+   {% endfor %}
+
+                    <td><input type="checkbox" 
+                      {% if t == "yes" %}
+   checked
+{% endif %}
+ name="role_admin"></td>
+
+
+
+                    <input type="hidden" name="role" 
+        value="{{ user.title}}">
+                    <td><button type="submit" class="btn btn-secondary">Assign Roles</button></td>
+                </form>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </body>
+</html>
